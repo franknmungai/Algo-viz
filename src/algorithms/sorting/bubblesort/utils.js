@@ -4,4 +4,9 @@ export const getItems = (n) => {
 	});
 };
 
-export const shuffle = (list) => list.sort(() => Math.random() - 0.5);
+export const shuffle = (list) => {
+	let newList = [...list];
+	newList.sort(() => Math.random() - 0.5);
+
+	return newList;
+};
