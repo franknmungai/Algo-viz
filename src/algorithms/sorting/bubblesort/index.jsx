@@ -7,12 +7,15 @@ const BubbleSort = () => {
 	const [collection, setCollection] = useState(() => getItems(100));
 	const [a, setA] = useState(collection[0]);
 	const [b, setB] = useState(collection[1]);
+	const [sorting, setSorting] = useState(false);
 
 	useEffect(() => {
 		setCollection((items) => shuffle(items));
 	}, []);
 
 	const sort = async () => {
+		if (sorting) return;
+		setSorting(true);
 		const items = [...collection];
 		for (let i = 0; i < items.length; i++) {
 			setA(items[i]);
@@ -32,9 +35,11 @@ const BubbleSort = () => {
 		}
 
 		setCollection([...items]);
+		setSorting(false);
 	};
 
 	const reshuffle = () => {
+		if (sorting) return;
 		setCollection((items) => shuffle(items));
 	};
 	return (
