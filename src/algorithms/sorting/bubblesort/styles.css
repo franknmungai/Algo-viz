@@ -1,0 +1,27 @@
+.bubble-sort .root {
+	margin: 0 auto;
+	padding: 24px;
+}
+
+.title {
+	text-align: center;
+	font-size: 24px;
+	letter-spacing: 2;
+	font-family: 'Courier New', Courier, monospace;
+	margin: 16px;
+}
+
+.display {
+	margin: 24px 16px;
+	padding: 16px;
+	display: flex;
+	justify-content: center;
+	transform: rotateX(180deg);
+}
+
+.bar {
+	width: 4px;
+	border-radius: 2px;
+	background-color: slateblue;
+	margin: 3px;
+}
