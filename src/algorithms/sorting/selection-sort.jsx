@@ -42,18 +42,21 @@ const SelectionSort = () => {
 		const items = [...collection];
 		for (let i = 0; i < items.length; i++) {
 			setA(items[i]);
-			let min = items[i];
+			let min = i;
 			for (let j = i + 1; j < items.length; j++) {
 				setB(items[j]);
 
 				await delay(0.004);
-				if (items[i].value > items[j].value) {
-					let left = items[j];
-					items[j] = items[i];
-					items[i] = left;
+				if (items[j].value < items[min].value) {
+					min = j;
 				}
-				setCollection([...items]);
+			}
 
+			if (min !== i) {
+				const temp = items[i];
+				items[i] = items[min];
+				items[min] = temp;
+				setCollection([...items]);
 				await delay(0.004);
 			}
 		}
