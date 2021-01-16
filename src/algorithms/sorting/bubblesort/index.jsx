@@ -9,9 +9,14 @@ const BubbleSort = () => {
 	const [b, setB] = useState(collection[1]);
 	const [sorting, setSorting] = useState(false);
 
+	const [sec, setSec] = useState('00');
+	const [min, setMin] = useState('00');
+
 	useEffect(() => {
 		setCollection((items) => shuffle(items));
 	}, []);
+
+	useEffect(() => {});
 
 	const sort = async () => {
 		if (sorting) return;
@@ -19,14 +24,14 @@ const BubbleSort = () => {
 		const items = [...collection];
 		for (let i = 0; i < items.length; i++) {
 			setA(items[i]);
-			for (let j = i + 1; j < items.length; j++) {
+			for (let j = 0; j < items.length - i - 1; j++) {
 				setB(items[j]);
 
 				await delay(0.004);
-				if (items[i].value > items[j].value) {
-					let temp = items[i];
-					items[i] = items[j];
-					items[j] = temp;
+				if (items[j].value > items[j + 1].value) {
+					let left = items[j];
+					items[j] = items[j + 1];
+					items[j + 1] = left;
 				}
 				setCollection([...items]);
 
@@ -42,6 +47,10 @@ const BubbleSort = () => {
 		if (sorting) return;
 		setCollection((items) => shuffle(items));
 	};
+
+	const time = () => {
+		if (!sorting) return;
+	};
 	return (
 		<div className="bubble-sort root">
 			<h2 className="title">Bubble Sort</h2>
@@ -52,6 +61,7 @@ const BubbleSort = () => {
 				<button className="btn shuffle" onClick={reshuffle}>
 					Shuffle
 				</button>
+				<button className="btn timer">{`${min} : ${sec}`}</button>
 			</div>
 			<div className="display">
 				{collection.map((item, i) => (

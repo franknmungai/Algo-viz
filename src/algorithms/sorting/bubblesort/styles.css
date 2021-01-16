@@ -6,7 +6,7 @@
 .title {
 	text-align: center;
 	font-size: 24px;
-	letter-spacing: 2;
+	letter-spacing: 2.5;
 	font-family: 'Courier New', Courier, monospace;
 	margin: 16px;
 }
@@ -62,4 +62,9 @@
 .controls .shuffle {
 	border: rgb(49, 175, 49) 1px solid;
 	color: rgb(49, 175, 49);
+}
+.controls .timer {
+	border: yellow;
+	color: rgb(180, 180, 10);
+	letter-spacing: 3px;
 }
