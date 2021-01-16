@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getItems, shuffle } from './utils';
 import { delay } from '../../../utils/async-delay';
 import './styles.css';
@@ -9,14 +9,32 @@ const BubbleSort = () => {
 	const [b, setB] = useState(collection[1]);
 	const [sorting, setSorting] = useState(false);
 
-	const [sec, setSec] = useState('00');
-	const [min, setMin] = useState('00');
+	const [sec, setSec] = useState(0);
+	const [min, setMin] = useState(0);
 
 	useEffect(() => {
 		setCollection((items) => shuffle(items));
 	}, []);
 
-	useEffect(() => {});
+	const timer = () => {
+		setSec((sec) => {
+			return sec >= 59 ? 0 : (sec += 1);
+		});
+	};
+
+	useEffect(() => {
+		if (!sorting) return;
+		const timerId = setInterval(timer, 1000);
+		return () => clearTimeout(timerId);
+
+		// eslint-disable-next-line
+	}, [sorting]);
+
+	useEffect(() => {
+		if (sec + 1 > 59) {
+			setMin((min) => Math.min((min += 1), 59));
+		}
+	}, [sec]);
 
 	const sort = async () => {
 		if (sorting) return;
@@ -48,9 +66,11 @@ const BubbleSort = () => {
 		setCollection((items) => shuffle(items));
 	};
 
-	const time = () => {
-		if (!sorting) return;
+	const twoDigit = (num) => {
+		const { length } = num.toString();
+		return length === 1 ? '0' + num : num;
 	};
+
 	return (
 		<div className="bubble-sort root">
 			<h2 className="title">Bubble Sort</h2>
@@ -61,7 +81,9 @@ const BubbleSort = () => {
 				<button className="btn shuffle" onClick={reshuffle}>
 					Shuffle
 				</button>
-				<button className="btn timer">{`${min} : ${sec}`}</button>
+				<button className="btn timer">{`${twoDigit(min)}:${twoDigit(
+					sec
+				)}`}</button>
 			</div>
 			<div className="display">
 				{collection.map((item, i) => (
