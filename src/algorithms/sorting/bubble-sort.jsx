@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getItems, shuffle } from './utils';
-import { delay } from '../../../utils/async-delay';
+import { delay } from '../../utils/async-delay';
 import './styles.css';
 
 const BubbleSort = () => {
@@ -32,7 +32,7 @@ const BubbleSort = () => {
 
 	useEffect(() => {
 		if (sec + 1 > 59) {
-			setMin((min) => Math.min((min += 1), 59));
+			setMin((min) => (min += 1));
 		}
 	}, [sec]);
 
@@ -64,6 +64,8 @@ const BubbleSort = () => {
 	const reshuffle = () => {
 		if (sorting) return;
 		setCollection((items) => shuffle(items));
+		setSec(0);
+		setMin(0);
 	};
 
 	const twoDigit = (num) => {
