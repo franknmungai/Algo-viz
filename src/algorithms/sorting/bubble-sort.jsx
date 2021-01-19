@@ -75,7 +75,7 @@ const BubbleSort = () => {
 
 	return (
 		<div className="bubble-sort root">
-			<h2 className="title">Bubble Sort</h2>
+			<h2 className="title">Bubble Sort 🤓</h2>
 			<div className="controls">
 				<button className="btn sort" onClick={sort}>
 					Sort

@@ -10,6 +10,7 @@ const MergeSort = () => {
 	const [right, setRight] = useState([]);
 	const [left, setLeft] = useState([]);
 	const [results, setResults] = useState([]);
+	const [slices, setSlices] = useState([]);
 
 	const [sec, setSec] = useState(0);
 	const [min, setMin] = useState(0);
@@ -41,6 +42,7 @@ const MergeSort = () => {
 	async function mergeSort(arr) {
 		setSorting(true);
 		if (arr.length === 1) {
+			setSlices((slices) => slices.concat(arr));
 			return arr;
 		}
 		const midpoint = Math.floor(arr.length / 2);
@@ -50,7 +52,6 @@ const MergeSort = () => {
 		setRight(right);
 		setLeft(left);
 
-		await delay(20);
 		const results = await merge(await mergeSort(left), await mergeSort(right));
 		setCollection([...results]);
 		return results;
@@ -66,8 +67,19 @@ const MergeSort = () => {
 			}
 		}
 
-		await delay(20);
 		setResults([...results]);
+		await delay(20);
+
+		// replace the merged result in the original array
+		const newSlices = [...slices];
+		newSlices.flat(Infinity).forEach((n, i) => {
+			const preempt = results.find((vl) => vl.id === n.id);
+			if (preempt) {
+				newSlices[i] = preempt;
+			}
+		});
+
+		setSlices(newSlices);
 
 		return [...results, ...left, ...right];
 	}
@@ -105,15 +117,25 @@ const MergeSort = () => {
 				)}`}</button>
 			</div>
 			<div className="display">
-				{collection.map((item, i) => (
-					<div
-						className={`bar ${right.includes(item.id) && 'a'} ${
-							left.includes(item.id) && 'b'
-						} ${results.includes(item.id) && 'merged'}`}
-						style={{ height: `${5 * item.value}px` }}
-						key={item.id}
-					/>
-				))}
+				{!sorting
+					? collection.map((item, i) => (
+							<div
+								className={`bar`}
+								style={{ height: `${5 * item.value}px` }}
+								key={item.id}
+							/>
+					  ))
+					: slices
+							.flat(Infinity)
+							.map((item, i) => (
+								<div
+									className={`bar ${right.includes(item.id) && 'a'} ${
+										left.includes(item.id) && 'b'
+									} ${results.includes(item.id) && 'merged'}`}
+									style={{ height: `${5 * item.value}px` }}
+									key={item.id}
+								/>
+							))}
 			</div>
 		</div>
 	);
