@@ -1,0 +1,72 @@
+.matrices .root {
+	margin: 0 auto;
+	padding: 24px;
+}
+
+.title {
+	text-align: center;
+	font-size: 24px;
+	letter-spacing: 2.5;
+	font-family: 'Courier New', Courier, monospace;
+	margin: 16px;
+	color: green;
+}
+.text {
+	font-size: 17.5px;
+	margin: 8px;
+	font-weight: 600;
+}
+.tiles {
+	margin: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.tile {
+	background-color: rgb(235, 235, 228);
+	margin: 1px;
+	width: 30px;
+	height: 30px;
+	border-radius: 3px;
+	transition: all 0.15s ease-in;
+}
+
+.tile:hover {
+	background-color: rgb(54, 153, 54);
+}
+
+.clicked {
+	background-color: rgb(54, 153, 54);
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 12px 0;
+}
+
+.controls .btn {
+	padding: 12px 32px;
+	outline: none;
+	border-radius: 28px;
+
+	background: white;
+	font-family: monospace;
+	letter-spacing: 1.5;
+	cursor: pointer;
+	font-size: 16.5px;
+	font-weight: 600;
+	margin: 0 8px;
+}
+
+.random {
+	border: orange 1px solid;
+	color: orange;
+}
