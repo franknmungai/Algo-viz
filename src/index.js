@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Graph from './algorithms/graphs/simple-graph';
 import SimpleTiles from './algorithms/matrices/simple-tiles';
 import BubbleSort from './algorithms/sorting/bubble-sort';
 import HappySort from './algorithms/sorting/happy-sort';
@@ -14,6 +15,7 @@ ReactDOM.render(
 		<SelectionSort />
 		<MergeSort /> */}
 		<SimpleTiles />
+		<Graph />
 	</React.Fragment>,
 	document.getElementById('root')
 );

@@ -1,4 +1,4 @@
-const createGraph = (depth = 5) => {
+export const createGraph = (depth = 5) => {
 	const graph = {
 		0: [1, 2],
 		[depth]: [],
@@ -13,7 +13,7 @@ const createGraph = (depth = 5) => {
 	return graph;
 };
 
-const createNodes = (graph) => {
+export const createNodes = (graph) => {
 	const nodes = [];
 
 	for (const node in graph) {
