@@ -29,7 +29,24 @@ const Graph = () => {
 		}
 	};
 
-	const dfs = () => {};
+	const dfs = async (node = 0) => {
+		const visited = [node];
+		const stack = [node];
+
+		while (stack.length) {
+			const node = stack.pop();
+			visited.push(node);
+			setVisited((nodes) => nodes.concat(node));
+			await delay(7);
+			for (const neighbor of graph[node]) {
+				if (!visited.includes(neighbor)) {
+					setVisited((nodes) => [...nodes, neighbor]);
+					stack.push(neighbor);
+					await delay(7);
+				}
+			}
+		}
+	};
 	return (
 		<div className="root">
 			<h1 className="title">Graphs</h1>
@@ -43,10 +60,12 @@ const Graph = () => {
 			</div>
 			<div className="graph">
 				{nodes.map((node) => (
-					<div
-						className={`vertex ${visited.includes(node) && 'visited'}`}
+					<Vertex
 						key={node}
-						onclick={() => (startNode.current = node)}
+						onClick={() => {
+							startNode.current = node;
+							setVisited((nodes) => nodes.concat(node));
+						}}
 					/>
 				))}
 			</div>
@@ -54,4 +73,7 @@ const Graph = () => {
 	);
 };
 
+const Vertex = ({ visited, onClick }) => {
+	return <div className={`vertex ${visited && 'visited'}`} onclick={onClick} />;
+};
 export default Graph;
