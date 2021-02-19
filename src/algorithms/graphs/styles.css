@@ -1,0 +1,63 @@
+.root {
+	margin: 0 auto;
+	padding: 24px;
+}
+
+.title {
+	text-align: center;
+	font-size: 24px;
+	letter-spacing: 2.5;
+	font-family: 'Courier New', Courier, monospace;
+	margin: 16px;
+	color: green;
+}
+
+.graph {
+	margin: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	flex-flow: wrap;
+	justify-content: center;
+	align-items: center;
+	/* max-width: 900px; */
+}
+
+.vertex {
+	background-color: rgb(236, 230, 230);
+	border-radius: 12%;
+	width: 30px;
+	height: 30px;
+	margin: 1px;
+}
+
+.visited {
+	background-color: steelblue;
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 12px 0;
+}
+
+.controls button {
+	padding: 12px 32px;
+	outline: none;
+	border: none;
+	border-radius: 28px;
+
+	background: rgb(163, 5, 163);
+	font-family: monospace;
+	letter-spacing: 2;
+	cursor: pointer;
+	font-size: 19.5px;
+	font-weight: 600;
+	margin: 0 8px;
+	color: white;
+	box-shadow: 0 0 5px 5px #f4f4f4;
+}
+
+.controls .dfs {
+	background-color: dodgerblue;
+}
