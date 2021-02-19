@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { createMatrix } from './utils';
+import { delay } from '../../utils/async-delay';
 import './styles.css';
 
 const SimpleTiles = () => {
 	const [count, setCount] = useState([]);
 	const [matrix] = useState(createMatrix());
 
-	const random = () => {
+	const random = async () => {
 		const remaining = matrix.flat(1);
 		const indices = Array.from({ length: remaining.length }, (_, i) => i);
 
-		while (remaining.length) {
-			const randIndex = indices.sort(() => Math.random() - 0.5)[0];
-			indices.splice(randIndex, 1);
-
+		let iterations = 0;
+		while (remaining.length >= 100) {
+			const randIndices = indices.sort(() => Math.random() - 0.5);
+			const randIndex = randIndices.pop();
 			setCount((count) => {
 				return count.concat(remaining[randIndex]);
 			});
 			remaining.splice(randIndex, 1);
+			await delay(20);
+			iterations++;
+			if (iterations >= 5000) break;
 		}
 	};
 
