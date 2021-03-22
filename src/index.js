@@ -10,12 +10,12 @@ import App from './App.js';
 
 ReactDOM.render(
 	<React.Fragment>
-		{/* <BubbleSort />
+		<BubbleSort />
 		<HappySort />
 		<SelectionSort />
-		<MergeSort /> */}
+		<MergeSort />
 		<SimpleTiles />
-		<Graph />
+		<Graph color="red" />
 	</React.Fragment>,
 	document.getElementById('root')
 );
