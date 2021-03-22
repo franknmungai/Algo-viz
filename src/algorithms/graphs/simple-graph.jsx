@@ -5,7 +5,8 @@ import { delay } from '../../utils/async-delay';
 
 const graph = createGraph(500);
 
-const Graph = () => {
+const Graph = (props) => {
+	console.log(props.color);
 	const [nodes, setNodes] = useState(() => createNodes(graph));
 	const [visited, setVisited] = useState([]);
 	const [startNode, setStartNode] = useState(0);
@@ -63,6 +64,7 @@ const Graph = () => {
 			setVisited((nodes) => nodes.filter((node) => node !== visited[i]));
 		}
 	};
+
 	return (
 		<div className="root">
 			<h1 className="title">Graphs</h1>
